@@ -1,0 +1,74 @@
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/** Mario Barrenechea <p>
+ * 	10/13/2010 <p>
+ * 	CMPSCI453: SA #1 <p>
+ * 
+ * 	ServerProgram.java:
+ * 
+ * 	This code is based on the Server code presented
+ * 	in class by Prof. Jim Kurose. It has been modified 
+ * 	to complete the socket programming assignment.
+ * 
+ * @author mbarrene
+ *
+ */
+public class ServerProgram {
+	
+
+    private static final int PORT_NUMBER = 6565;
+    private static ServerSocket myServer = null;
+    private static Socket serviceSocket = null;
+    private static BufferedReader inFromClient = null;
+    private static DataOutputStream toClient = null;
+	
+    public static void main (String args []){
+		
+	try {
+			
+	    //We use a boolean to evaluate when to end the Server program.
+	    boolean done = false;
+			
+	    //Set up the Server Socket listening on specified Port Number.
+	    myServer = new ServerSocket (PORT_NUMBER);
+			
+	    //We iterate until the Server process is killed.
+	    while (done == false){
+				
+			System.out.print("Waiting for a client socket connection...");
+			
+			//Now wait for a client socket connection...
+			serviceSocket = myServer.accept();
+			System.out.println ("OK");
+					
+			System.out.print ("Setting up appropriate streams...");
+			//Set up the appropriate streams.
+			inFromClient = new BufferedReader (new InputStreamReader (serviceSocket.getInputStream()));
+			toClient = new DataOutputStream (serviceSocket.getOutputStream());
+			System.out.println("OK");
+	
+			System.out.print("Reading in Message from Client Socket and sending a modified phrase...");
+			String message = inFromClient.readLine();
+			System.out.println ("Message is: " + message);
+			toClient.writeBytes(message.toUpperCase() + '\n');  
+			System.out.println("OK");
+		    serviceSocket.close();
+			
+	    }
+
+	    System.out.print("Closing all Streams and Sockets...");
+	    inFromClient.close();
+	    toClient.close();
+	    myServer.close();
+	    System.out.println("OK");
+			
+	} catch (IOException e){ System.err.println(e); }
+		
+    }//end main
+
+}

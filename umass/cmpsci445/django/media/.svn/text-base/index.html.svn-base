@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Question Answers</title>
+    <style type="text/css">
+    	H1 {font-size: 20px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H2 {font-size: 18px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H3 {font-size: 16px; font-variant:small-caps;font-family: Helvetica, Verdana, Arial, sans-serif;background:#c0c0c0; border: 1px solid #aaa;
+    	text-align: left;}
+
+	body {font-size: 12px; font-family: Verdana , sans-serif, Arial;}
+    	a:visited,a:link { font-size:14px; font-variant:small-caps; color: #000080; text-decoration:underline; text-transform:capitalize;}
+    </style>
+  </head>
+  <body>
+       <h2>Welcome to Question Answer Forum</h2>
+       <br/>
+      
+{% if msg %} <p><h4>{{msg}}</h4></p> {% endif %}
+{% if user.is_authenticated %}
+<p><h4>Signed on as {{user.username}} </h4>
+<a href = "./logout" > Logout </a> <br/>
+
+<h4> You can start by Submitting your Question or Checking the
+Questions listed here. </p></h4>
+{% endif %}
+
+{% if not user.is_authenticated %}
+<p><h4>You must login first in order to use the full functionality
+    	of the Question Answer Forum.</p></h4>
+{% endif %}
+
+       <ul>
+	 <li><h4><a href="./listQuestions">List All Questions</a></h4></li>
+	 {% if not user.is_authenticated %}
+	 <li><a href="./showLoginPage"> Login to Forum </a></li> 
+	 <li><a href="./showRegistrationPage"> Register to the Forum </a></li>
+	 {% endif %}
+	 {% if user.is_authenticated %}
+	 <li><a href="./showProfilePage"> My Profile Page </a></li>
+	 {% endif %}
+       </ul>
+</body>
+</html>
+

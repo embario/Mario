@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/283/trunk/Courses/CMPSCI445/mysite/answers
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/285/trunk/Courses/CMPSCI445/mysite/answers/views.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/276/trunk/Courses/CMPSCI445/mysite/answers/__init__.py
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/276/trunk/Courses/CMPSCI445/mysite/answers/tests.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/285/trunk/Courses/CMPSCI445/mysite/answers/models.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/285/trunk/Courses/CMPSCI445/mysite/answers/urls.py
+END

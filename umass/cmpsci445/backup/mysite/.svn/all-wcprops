@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/277/trunk/Courses/CMPSCI445/mysite
+END
+manage.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/276/trunk/Courses/CMPSCI445/mysite/manage.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/276/trunk/Courses/CMPSCI445/mysite/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/277/trunk/Courses/CMPSCI445/mysite/settings.py
+END
+sampledb.db
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/277/trunk/Courses/CMPSCI445/mysite/sampledb.db
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/276/trunk/Courses/CMPSCI445/mysite/urls.py
+END

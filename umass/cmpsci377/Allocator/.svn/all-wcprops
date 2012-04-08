@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/136/trunk/Courses/CMPSCI377/Allocator
+END
+test.cc
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/136/trunk/Courses/CMPSCI377/Allocator/test.cc
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/136/trunk/Courses/CMPSCI377/Allocator/.project
+END
+allocator.cc
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/136/trunk/Courses/CMPSCI377/Allocator/allocator.cc
+END
+allocator.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/136/trunk/Courses/CMPSCI377/Allocator/allocator.h
+END
+libshim.a
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/136/trunk/Courses/CMPSCI377/Allocator/libshim.a
+END
+.cproject
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/136/trunk/Courses/CMPSCI377/Allocator/.cproject
+END

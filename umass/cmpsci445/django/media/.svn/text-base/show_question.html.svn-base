@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Question Answers</title>
+    <style type="text/css">
+    	H1 {font-size: 20px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H2 {font-size: 18px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H3 {font-size: 16px; font-variant:small-caps;font-family: Helvetica, Verdana, Arial, sans-serif;background:#c0c0c0; border: 1px solid #aaa;
+    	text-align: left;}
+
+	body {font-size: 12px; font-family: Verdana , sans-serif, Arial;}
+    	a:visited,a:link { font-size:14px; font-variant:small-caps; color: #000080; text-decoration:underline; text-transform:capitalize;}
+    	table { border: 1px solid #aaa; } 
+    	td { border-width: thin; 
+    	border-style: outset; }
+    </style>
+  </head>
+  <body>
+  	<h2>Question and Answer: [{{printQuestion.qid}}]</h2><br/>
+
+{% if msg %} <p><h4>{{msg}}</h4></p> {% endif %}
+{% if user.is_authenticated %}
+<a href = "./logout" > Logout </a>
+{% endif %}
+
+<h3> Question </h3>
+<table>
+  <tr>
+    <td><b>Submitted By</b></td>
+    <td><b>Question</b></td>
+    <td><b>Posted</b></td>
+    <tr>
+      <td>{{printQuestion.username}}</td>
+      <td>{{printQuestion.question}}</td>
+      <td>{{printQuestion.posted}}</td>
+    </tr>
+  </table>
+ 
+  <h3> Comments? </h3>
+  {% if printComments|length == 0 %}
+  <h4> None. </h4>
+  {% endif %}
+  
+  <table>
+    <tr>
+      <td><b>Submitted By</b></td>
+      <td><b>Question</b></td>
+      <td><b>Posted</b></td>
+    </tr>
+    {% for answer in printAnswers %}
+    <tr>
+      <td>{{printComment.username}}</td>
+      <td>{{printComment.comment}}</td>
+      <td>{{printComment.posted}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+  {% if printAnswers|length == 0 %}
+  <h3> No Answers Yet! </h3>
+  {% else %}
+  <h3> Answers </h3>
+  {% endif %}
+  
+  <table>
+    <tr>
+      <td><b>Submitted By</b></td>
+      <td><b>Answer</b></td>
+      <td><b>Time</b></td>
+    </tr>
+  {% for answer in printAnswers %}
+    <tr>
+      <td>{{answer.username}}</td>
+      <td>{{answer.answer}}</td>
+      <td>{{answer.posted}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<ul>
+  {% if user.is_authenticated %}
+  <li><a href="./commentForm?qid={{qid}}"><h4>Submit a Comment</h4></a></li>
+  <li><a href="./answerForm?qid={{qid}}"><h4>Submit an Answer</h4></a></li>
+  <li><a href="./showProfilePage"> My Profile Page </a></li>
+  <li><a href="./questionForm">Submit Question</a></li>
+  {% endif %}
+  <li><a href="./listQuestions">Return to Questions</a></li>
+  <li><a href="./"> Home </a></li>
+</ul>
+</body>
+</html>
+

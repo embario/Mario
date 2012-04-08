@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Question Answers</title>
+    <style type="text/css">
+    	H1 {font-size: 20px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H2 {font-size: 18px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H3 {font-size: 16px; font-variant:small-caps;font-family: Helvetica, Verdana, Arial, sans-serif;background:#c0c0c0; border: 1px solid #aaa;
+    	text-align: left;}
+	body {font-size: 12px; font-family: Verdana , sans-serif, Arial;}
+    	a:visited,a:link { font-size:14px; font-variant:small-caps; color: #000080; text-decoration:underline; text-transform:capitalize;}
+    </style>
+  </head>
+  <body>
+       <h2>Submit your Comment here</h2>
+       <form method="POST" action="./submitComment?qid={{qid}}">{% csrf_token %}
+
+		<h4> Your comment as {{user.username}}: </h4>
+		<textarea name="comment" cols="60" rows="4"></textarea><br/>
+		<input type="submit" value="Submit Comment"></input>
+       </form>
+       <ul>
+       <li><a href="./questionForm">Submit Question</a></li>
+       <li><a href="./listQuestions">Return to Questions</a></li>
+       <li><a href="./showProfilePage">My Profile Page </a></li>
+       <li><a href="./"> Home </a></li>
+       </ul>
+</body>
+</html>

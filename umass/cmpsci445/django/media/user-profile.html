@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Question Answers</title>
+    <style type="text/css">
+    	H1 {font-size: 20px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H2 {font-size: 18px; font-family: Helvetica, Verdana, Arial, sans-serif;background:#eee8a2; border: 1px solid #aaa; text-align: center;}
+    	H3 {font-size: 16px; font-variant:small-caps;font-family: Helvetica, Verdana, Arial, sans-serif;background:#c0c0c0; border: 1px solid #aaa;
+    	text-align: left;}
+
+	body {font-size: 12px; font-family: Verdana , sans-serif, Arial;}
+    	a:visited,a:link { font-size:14px; font-variant:small-caps;
+    	color: #000080; text-decoration:underline;
+    	text-transform:capitalize;}
+   	table { border: 1px solid #aaa; } 
+    	td { border-width: thin; 
+    	border-style: outset; }
+    </style>
+</head>
+<body>
+
+<h2>{{user.username}}</h2><br/>
+
+{% if msg %} <p><h4>{{msg}}</h4></p> {% endif %}
+{% if user.is_authenticated %}
+<p><h4>Signed on as {{user.username}} </h4>
+<a href = "./logout" > Logout </a>
+</p>
+{% endif %}
+
+<h3> My Information </h3>
+<h4>
+{% if not editInfo %}
+First Name: {{user.first_name}} <br/>
+Last Name: {{user.last_name}} <br/>
+Email Address: {{user.email}} <br/>
+Last Login Time: {{user.last_login}} <br/>
+Date Joined: {{user.date_joined}} <br/>
+<a href = "./showProfilePage?editInfo=true"> Edit Information </a>
+{% else %}
+<form method = "POST" action = "./showProfilePage"> {% csrf_token %}
+
+{% if user.username %}
+Username: <input type = "text" name ="uname" value = {{user.username}} /><br/>
+{% else %}
+Username: <input type = "text" name ="uname" /><br/>
+{% endif %}
+
+{% if user.first_name %}
+First Name: <input type = "text" name ="fname" value = {{user.first_name}} /><br/>
+{% else %}
+First Name: <input type = "text" name ="fname" /><br/>
+{% endif %}
+
+{% if user.last_name %}
+Last Name: <input type = "text" name = "lname" value = {{user.last_name}} /><br/>
+{% else %}
+Last Name: <input type = "text" name = "lname" /><br/>
+{% endif %}
+
+{% if user.email %}
+Email Address: <input type = "text" name = "email" value = {{user.email}} /><br/>
+{% else %}
+Email Address: <input type = "text" name = "email" /><br/>
+{% endif %}
+
+<input type = "submit" name = "newInfo" value = "OK"/>
+{% endif %}
+</h4>
+
+<h3> My Questions </h3>
+<table>
+  <tr>
+    <td><b><a href="./listQuestions?sort=tags">Tags</a></b>
+    <td><b><a href="./listQuestions?sort=qid">QID</a></b>
+    <td><b><a href="./listQuestions?sort=question">Question</a></b>
+    <td><b><a href="./listQuestions?sort=posted">Time</a></b>
+  </tr>
+
+{% for question in userQuestions %}
+<tr>
+  <td><b> {% for tag in question.tags %} {{tag}} {% endfor %} </b></td>
+  <td><b>{{question.qid}}</b></td>
+  <td><b><a href="./showQuestion?qid={{question.qid}}" style="font-variant:normal;font-size:12px">{{question.question}}</b></a></td>
+  <td><b>{{question.posted}}</b></td>
+</tr>
+{% endfor %}
+</table>
+
+<ul>
+  <li><a href="./questionForm">Submit a Question</a></li>
+  <li><a href="./listQuestions">Return to Questions</a></li>
+  <li><a href="./logout"> Logout </a></li>
+  <li><a href="./"> Home </a></li>
+</ul>
+
+</body>
+</html>
+
+

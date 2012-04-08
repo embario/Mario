@@ -1,0 +1,900 @@
+Enter TRACE:AT: node0.rtinit0() ... 
+Node 0 just sent off the packet {0,1,3,7} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1   999   999
+dest 2|  999     3   999
+     3|  999   999     7
+
+AT: node1.rtinit1() ... 
+Node 1 just sent off the packet {1,0,1,999} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[1]: 
+
+             via   
+   D1 |    0     2 
+  ----|-----------
+     0|    1   999
+dest 2|  999     1
+     3|  999   999
+
+AT: node2.rtinit2() ... 
+Node 2 just sent off the packet {3,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3   999   999
+dest 1|  999     1   999
+     3|  999   999     2
+
+AT: node3.rtinit3() ... 
+Node 3 just sent off the packet {7,2,0,999} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[3]: 
+
+             via     
+   D3 |    0     2 
+  ----|-----------
+     0|    7   999
+dest 1|  999   999
+     2|  999     2
+
+MAIN: rcv event, t=0.420, at 3 src: 0, dest: 3, contents:   0   1   3   7
+AT: node3.rtupdate3() ... 
+This packet is {0,1,3,7} 
+There is a LINK COST CHANGE: Node 3 will send updates to Node 0 and 2! 
+
+Node 3 just sent off the packet {7,8,2,0} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[3]: 
+
+             via     
+   D3 |    0     2 
+  ----|-----------
+     0|    7   999
+dest 1|    8   999
+     2|   10     2
+
+
+
+MAIN: rcv event, t=0.689, at 3 src: 2, dest: 3, contents:   3   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {3,1,0,2} 
+There is a LINK COST CHANGE: Node 3 will send updates to Node 0 and 2! 
+
+Node 3 just sent off the packet {5,3,2,0} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[3]: 
+
+             via     
+   D3 |    0     2 
+  ----|-----------
+     0|    7     5
+dest 1|    8     3
+     2|   10     2
+
+
+
+MAIN: rcv event, t=0.697, at 1 src: 0, dest: 1, contents:   0   1   3   7
+AT: node1.rtupdate1() ... 
+This packet is {0,1,3,7} 
+There is a LINK COST CHANGE: Node 1 will send updates to Node 0 and 2! 
+
+Node 1 just sent off the packet {1,0,1,8} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[1]: 
+
+             via   
+   D1 |    0     2 
+  ----|-----------
+     0|    1   999
+dest 2|    4     1
+     3|    8   999
+
+
+
+MAIN: rcv event, t=0.980, at 0 src: 1, dest: 0, contents:   1   0   1 999
+AT: node0.rtupdate0() ... 
+This packet is {1,0,1,999} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,7} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1   999   999
+dest 2|    2     3   999
+     3|  999   999     7
+
+
+
+MAIN: rcv event, t=1.270, at 2 src: 0, dest: 2, contents:   0   1   3   7
+AT: node2.rtupdate2() ... 
+This packet is {0,1,3,7} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {3,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3   999   999
+dest 1|    4     1   999
+     3|   10   999     2
+
+
+
+MAIN: rcv event, t=1.532, at 1 src: 2, dest: 1, contents:   3   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {3,1,0,2} 
+There is a LINK COST CHANGE: Node 1 will send updates to Node 0 and 2! 
+
+Node 1 just sent off the packet {1,0,1,3} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[1]: 
+
+             via   
+   D1 |    0     2 
+  ----|-----------
+     0|    1     4
+dest 2|    4     1
+     3|    8     3
+
+
+
+MAIN: rcv event, t=2.007, at 2 src: 1, dest: 2, contents:   1   0   1 999
+AT: node2.rtupdate2() ... 
+This packet is {1,0,1,999} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2   999
+dest 1|    4     1   999
+     3|   10   999     2
+
+
+
+MAIN: rcv event, t=2.147, at 0 src: 2, dest: 0, contents:   3   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {3,1,0,2} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,5} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4   999
+dest 2|    2     3   999
+     3|  999     5     7
+
+
+
+MAIN: rcv event, t=2.336, at 1 src: 0, dest: 1, contents:   0   1   2   7
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,7} 
+There is a LINK COST CHANGE: Node 1 will send updates to Node 0 and 2! 
+
+Node 1 just sent off the packet {1,0,1,3} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[1]: 
+
+             via   
+   D1 |    0     2 
+  ----|-----------
+     0|    1     4
+dest 2|    3     1
+     3|    8     3
+
+
+
+MAIN: rcv event, t=2.786, at 3 src: 0, dest: 3, contents:   0   1   2   7
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,7} 
+There is a LINK COST CHANGE: Node 3 will send updates to Node 0 and 2! 
+
+Node 3 just sent off the packet {5,3,2,0} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[3]: 
+
+             via     
+   D3 |    0     2 
+  ----|-----------
+     0|    7     5
+dest 1|    8     3
+     2|    9     2
+
+
+
+MAIN: rcv event, t=3.045, at 0 src: 3, dest: 0, contents:   7 999   2   0
+AT: node0.rtupdate0() ... 
+This packet is {7,999,2,0} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,5} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4   999
+dest 2|    2     3     9
+     3|  999     5     7
+
+
+
+MAIN: rcv event, t=3.613, at 2 src: 3, dest: 2, contents:   7 999   2   0
+AT: node2.rtupdate2() ... 
+This packet is {7,999,2,0} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     9
+dest 1|    4     1   999
+     3|   10   999     2
+
+
+
+MAIN: rcv event, t=4.106, at 1 src: 2, dest: 1, contents:   3   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {3,1,0,2} 
+
+
+MAIN: rcv event, t=4.109, at 3 src: 2, dest: 3, contents:   3   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {3,1,0,2} 
+
+
+MAIN: rcv event, t=4.940, at 0 src: 3, dest: 0, contents:   7   8   2   0
+AT: node0.rtupdate0() ... 
+This packet is {7,8,2,0} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,5} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4    15
+dest 2|    2     3     9
+     3|  999     5     7
+
+
+
+MAIN: rcv event, t=5.234, at 2 src: 3, dest: 2, contents:   7   8   2   0
+AT: node2.rtupdate2() ... 
+This packet is {7,8,2,0} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     9
+dest 1|    4     1    10
+     3|   10   999     2
+
+
+
+MAIN: rcv event, t=5.264, at 0 src: 3, dest: 0, contents:   5   3   2   0
+AT: node0.rtupdate0() ... 
+This packet is {5,3,2,0} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,5} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4    10
+dest 2|    2     3     9
+     3|  999     5     7
+
+
+
+MAIN: rcv event, t=5.291, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+There is a LINK COST CHANGE: Node 1 will send updates to Node 0 and 2! 
+
+Node 1 just sent off the packet {1,0,1,3} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[1]: 
+
+             via   
+   D1 |    0     2 
+  ----|-----------
+     0|    1     3
+dest 2|    3     1
+     3|    8     3
+
+
+
+MAIN: rcv event, t=5.557, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+There is a LINK COST CHANGE: Node 3 will send updates to Node 0 and 2! 
+
+Node 3 just sent off the packet {4,3,2,0} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[3]: 
+
+             via     
+   D3 |    0     2 
+  ----|-----------
+     0|    7     4
+dest 1|    8     3
+     2|    9     2
+
+
+
+MAIN: rcv event, t=6.367, at 1 src: 0, dest: 1, contents:   0   1   2   5
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,5} 
+There is a LINK COST CHANGE: Node 1 will send updates to Node 0 and 2! 
+
+Node 1 just sent off the packet {1,0,1,3} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[1]: 
+
+             via   
+   D1 |    0     2 
+  ----|-----------
+     0|    1     3
+dest 2|    3     1
+     3|    6     3
+
+
+
+MAIN: rcv event, t=6.772, at 1 src: 0, dest: 1, contents:   0   1   2   5
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=6.862, at 3 src: 0, dest: 3, contents:   0   1   2   5
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,5} 
+There is a LINK COST CHANGE: Node 3 will send updates to Node 0 and 2! 
+
+Node 3 just sent off the packet {4,3,2,0} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[3]: 
+
+             via     
+   D3 |    0     2 
+  ----|-----------
+     0|    7     4
+dest 1|    8     3
+     2|    9     2
+
+
+
+MAIN: rcv event, t=6.868, at 3 src: 0, dest: 3, contents:   0   1   2   5
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=6.887, at 0 src: 1, dest: 0, contents:   1   0   1   8
+AT: node0.rtupdate0() ... 
+This packet is {1,0,1,8} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,5} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4    10
+dest 2|    2     3     9
+     3|    9     5     7
+
+
+
+MAIN: rcv event, t=6.921, at 0 src: 2, dest: 0, contents:   3   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {3,1,0,2} 
+
+
+MAIN: rcv event, t=7.168, at 2 src: 3, dest: 2, contents:   5   3   2   0
+AT: node2.rtupdate2() ... 
+This packet is {5,3,2,0} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     7
+dest 1|    4     1     5
+     3|   10   999     2
+
+
+
+MAIN: rcv event, t=8.034, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=8.070, at 0 src: 1, dest: 0, contents:   1   0   1   3
+AT: node0.rtupdate0() ... 
+This packet is {1,0,1,3} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,4} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4    10
+dest 2|    2     3     9
+     3|    4     5     7
+
+
+
+MAIN: rcv event, t=8.073, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,4} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4    10
+dest 2|    2     3     9
+     3|    4     5     7
+
+
+
+MAIN: rcv event, t=8.527, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=8.724, at 1 src: 0, dest: 1, contents:   0   1   2   5
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=9.034, at 3 src: 0, dest: 3, contents:   0   1   2   5
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=9.069, at 2 src: 1, dest: 2, contents:   1   0   1   8
+AT: node2.rtupdate2() ... 
+This packet is {1,0,1,8} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     7
+dest 1|    4     1     5
+     3|   10     9     2
+
+
+
+MAIN: rcv event, t=9.347, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=9.662, at 0 src: 1, dest: 0, contents:   1   0   1   3
+AT: node0.rtupdate0() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=10.166, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=10.670, at 1 src: 0, dest: 1, contents:   0   1   2   5
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=10.683, at 3 src: 0, dest: 3, contents:   0   1   2   5
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=11.022, at 2 src: 0, dest: 2, contents:   0   1   2   7
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,7} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     7
+dest 1|    4     1     5
+     3|   10     9     2
+
+
+
+MAIN: rcv event, t=11.496, at 0 src: 3, dest: 0, contents:   5   3   2   0
+AT: node0.rtupdate0() ... 
+This packet is {5,3,2,0} 
+
+
+MAIN: rcv event, t=11.540, at 3 src: 0, dest: 3, contents:   0   1   2   5
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=11.846, at 1 src: 0, dest: 1, contents:   0   1   2   5
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=12.426, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=12.447, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=12.518, at 1 src: 0, dest: 1, contents:   0   1   2   4
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,4} 
+There is a LINK COST CHANGE: Node 1 will send updates to Node 0 and 2! 
+
+Node 1 just sent off the packet {1,0,1,3} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[1]: 
+
+             via   
+   D1 |    0     2 
+  ----|-----------
+     0|    1     3
+dest 2|    3     1
+     3|    5     3
+
+
+
+MAIN: rcv event, t=12.553, at 1 src: 0, dest: 1, contents:   0   1   2   4
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,4} 
+
+
+MAIN: rcv event, t=12.596, at 3 src: 0, dest: 3, contents:   0   1   2   4
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,4} 
+There is a LINK COST CHANGE: Node 3 will send updates to Node 0 and 2! 
+
+Node 3 just sent off the packet {4,3,2,0} to Node 0 and 2! 
+CURRENT TABLE FOR NODE[3]: 
+
+             via     
+   D3 |    0     2 
+  ----|-----------
+     0|    7     4
+dest 1|    8     3
+     2|    9     2
+
+
+
+MAIN: rcv event, t=12.746, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=12.961, at 2 src: 1, dest: 2, contents:   1   0   1   3
+AT: node2.rtupdate2() ... 
+This packet is {1,0,1,3} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     7
+dest 1|    4     1     5
+     3|   10     4     2
+
+
+
+MAIN: rcv event, t=13.505, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=13.585, at 0 src: 1, dest: 0, contents:   1   0   1   3
+AT: node0.rtupdate0() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=13.716, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=13.918, at 3 src: 0, dest: 3, contents:   0   1   2   4
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,4} 
+
+
+MAIN: rcv event, t=13.989, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=14.385, at 0 src: 3, dest: 0, contents:   4   3   2   0
+AT: node0.rtupdate0() ... 
+This packet is {4,3,2,0} 
+There is a LINK COST CHANGE: Node 0 will send updates to Node 1,2, and 3! 
+
+Node 0 just sent off the packet {0,1,2,4} to Node 1, 2, and 3! 
+CURRENT TABLE FOR NODE[0]: 
+
+                via     
+   D0 |    1     2    3 
+  ----|-----------------
+     1|    1     4    10
+dest 2|    2     3     9
+     3|    4     5     7
+
+
+
+MAIN: rcv event, t=14.839, at 2 src: 0, dest: 2, contents:   0   1   2   5
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,5} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     7
+dest 1|    4     1     5
+     3|    8     4     2
+
+
+
+MAIN: rcv event, t=14.887, at 2 src: 1, dest: 2, contents:   1   0   1   3
+AT: node2.rtupdate2() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=15.072, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=15.293, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=15.987, at 2 src: 3, dest: 2, contents:   5   3   2   0
+AT: node2.rtupdate2() ... 
+This packet is {5,3,2,0} 
+
+
+MAIN: rcv event, t=16.147, at 0 src: 1, dest: 0, contents:   1   0   1   3
+AT: node0.rtupdate0() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=16.273, at 1 src: 0, dest: 1, contents:   0   1   2   4
+AT: node1.rtupdate1() ... 
+This packet is {0,1,2,4} 
+
+
+MAIN: rcv event, t=16.833, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=17.871, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=17.982, at 2 src: 0, dest: 2, contents:   0   1   2   5
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=18.074, at 0 src: 3, dest: 0, contents:   4   3   2   0
+AT: node0.rtupdate0() ... 
+This packet is {4,3,2,0} 
+
+
+MAIN: rcv event, t=18.222, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=19.169, at 2 src: 0, dest: 2, contents:   0   1   2   5
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=19.480, at 3 src: 0, dest: 3, contents:   0   1   2   4
+AT: node3.rtupdate3() ... 
+This packet is {0,1,2,4} 
+
+
+MAIN: rcv event, t=19.668, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=19.704, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=20.420, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=20.684, at 2 src: 0, dest: 2, contents:   0   1   2   5
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=21.507, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=22.146, at 0 src: 1, dest: 0, contents:   1   0   1   3
+AT: node0.rtupdate0() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=22.182, at 2 src: 1, dest: 2, contents:   1   0   1   3
+AT: node2.rtupdate2() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=22.355, at 0 src: 3, dest: 0, contents:   4   3   2   0
+AT: node0.rtupdate0() ... 
+This packet is {4,3,2,0} 
+
+
+MAIN: rcv event, t=22.564, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=23.212, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=23.584, at 2 src: 3, dest: 2, contents:   4   3   2   0
+AT: node2.rtupdate2() ... 
+This packet is {4,3,2,0} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     6
+dest 1|    4     1     5
+     3|    8     4     2
+
+
+
+MAIN: rcv event, t=23.729, at 2 src: 1, dest: 2, contents:   1   0   1   3
+AT: node2.rtupdate2() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=24.333, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=24.355, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=24.814, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=25.494, at 2 src: 3, dest: 2, contents:   4   3   2   0
+AT: node2.rtupdate2() ... 
+This packet is {4,3,2,0} 
+
+
+MAIN: rcv event, t=25.692, at 2 src: 0, dest: 2, contents:   0   1   2   5
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,5} 
+
+
+MAIN: rcv event, t=26.134, at 2 src: 0, dest: 2, contents:   0   1   2   4
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,4} 
+There is a LINK COST CHANGE: Node 2 will send updates to Node 0,1, and 3! 
+
+Node 2 just sent off the packet {2,1,0,2} to Node 0, 1, and 3! 
+CURRENT TABLE FOR NODE[2]: 
+
+                via     
+   D2 |    0     1    3 
+  ----|-----------------
+     0|    3     2     6
+dest 1|    4     1     5
+     3|    7     4     2
+
+
+
+MAIN: rcv event, t=27.622, at 1 src: 2, dest: 1, contents:   2   1   0   2
+AT: node1.rtupdate1() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=27.822, at 3 src: 2, dest: 3, contents:   2   1   0   2
+AT: node3.rtupdate3() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=27.843, at 2 src: 0, dest: 2, contents:   0   1   2   4
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,4} 
+
+
+MAIN: rcv event, t=27.987, at 0 src: 2, dest: 0, contents:   2   1   0   2
+AT: node0.rtupdate0() ... 
+This packet is {2,1,0,2} 
+
+
+MAIN: rcv event, t=28.517, at 2 src: 1, dest: 2, contents:   1   0   1   3
+AT: node2.rtupdate2() ... 
+This packet is {1,0,1,3} 
+
+
+MAIN: rcv event, t=30.448, at 2 src: 3, dest: 2, contents:   4   3   2   0
+AT: node2.rtupdate2() ... 
+This packet is {4,3,2,0} 
+
+
+MAIN: rcv event, t=31.075, at 2 src: 0, dest: 2, contents:   0   1   2   4
+AT: node2.rtupdate2() ... 
+This packet is {0,1,2,4} 
+
+
+MAIN: rcv event, t=10000.000, at -1MAIN: rcv event, t=20000.000, at 0
+Simulator terminated at t=20000.000000, no packets in medium

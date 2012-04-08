@@ -1,0 +1,155 @@
+#include <stdio.h>
+
+extern struct rtpkt {
+  int sourceid;       /* id of sending router sending this pkt */
+  int destid;         /* id of router to which pkt being sent 
+                         (must be an immediate neighbor) */
+  int mincost[4];    /* min cost to node 0 ... 3 */
+  };
+
+//Use this to correctly define the Node ID
+int NODEID1 = 1;
+
+extern int TRACE;
+extern int YES;
+extern int NO;
+
+int connectcosts1[4] = { 1,  0,  1, 999 };
+
+struct distance_table 
+{
+  int costs[4][4];
+} dt1;
+
+
+/* students to write the following two routines, and maybe some others */
+
+
+rtinit1() 
+{
+  printf("AT: node1.rtinit1() ... \n");
+
+  //Iterate through Distance Table and initialize values to Infinity (999)!
+  int i = 0;
+  for (i = 0; i < 4; i++){
+    int j = 0;
+    for (j = 0; j < 4; j++){
+      dt1.costs [i][j] = 999;
+    }
+  }
+
+  //And Initialize the first neighbor values!
+  dt1.costs [0][0] = 1;
+  dt1.costs [1][1] = 0;
+  dt1.costs [2][2] = 1;
+  printdt1(&dt1);
+
+}
+
+
+rtupdate1(rcvdpkt)
+  struct rtpkt *rcvdpkt;
+{
+  printf("AT: node1.rtupdate1() ... \n");
+
+  int neighborid = rcvdpkt->sourceid;
+  int index = 0;
+  int linkCostChange = 0; //Set to FALSE
+
+  //Add in the new information to the respective cells in the distance table.
+  dt1.costs [neighborid] [0] = rcvdpkt->mincost [0];
+  dt1.costs [neighborid] [1] = rcvdpkt->mincost [1];
+  dt1.costs [neighborid] [2] = rcvdpkt->mincost [2];
+  dt1.costs [neighborid] [3] = rcvdpkt->mincost [3];
+
+  printdt1(&dt1);
+
+  //Keep track of the minimum link cost for each cell index.
+  int minValue = 999;
+
+  //Iterate through the new cells in the distance table
+  //Compute the minimum Link cost of each value based on the new information.
+  int cellIndex = 0;
+  for (cellIndex = 0; cellIndex < 4; cellIndex++){
+
+    //For each cell, compute the minimum cost from this node's adjacent cells.
+    int index = 0;
+    for (index = 0; index < 4; index++){
+
+      //Compute the Link Cost based upon information from adjacent neighbors.
+      int cost = dt1.costs [NODEID1][index] + dt1.costs [index][cellIndex];
+
+      if (cost < minValue)
+	minValue = cost; //Set the new minimum, but keep iterating!
+
+    }//end inner loop
+
+    //If we found a smaller value, then replace it and set off the linkCostChange Flag.
+    if (minValue < dt1.costs [NODEID1][cellIndex]){
+
+      linkCostChange = 1; //Keep it off; we now know that we need to update our neighbors!
+      dt1.costs [NODEID1][cellIndex] = minValue; //Update the cell index with the new (smaller) value.
+
+    }
+  }//end outer loop
+
+
+  //If there was a link cost change...
+  if (linkCostChange == 1){
+
+    int firstVal = dt1.costs [NODEID1][0];
+    int secondVal = dt1.costs [NODEID1][1];
+    int thirdVal = dt1.costs [NODEID1][2];
+    int fourthVal = dt1.costs [NODEID1][3];
+
+    printf ("There is a LINK COST CHANGE: Node 1 will send {%d, %d, %d, %d} to Node 1 and Node 2! \n\n", firstVal, secondVal, thirdVal, fourthVal);
+
+    //Create the Packet that Node 0 will send to its
+    //adjacent neighbors with updated link costs.
+    struct rtpkt updatePkt;
+    updatePkt.sourceid = 1;
+
+    int index = 0;
+    for (index = 0; index < 4; index++)
+      updatePkt.mincost [index] = dt1.costs[NODEID1][index];
+
+    //To Node 0
+    updatePkt.destid = 0;
+    tolayer2(updatePkt);
+
+    //To Node 2
+    updatePkt.destid = 2;
+    tolayer2(updatePkt);
+
+  }
+
+}
+
+
+printdt1(dtptr)
+  struct distance_table *dtptr;
+  
+{
+
+  printf("CURRENT TABLE FOR NODE[1]: \n\n");
+  printf("             via   \n");
+  printf("   D1 |    0     2 \n");
+  printf("  ----|-----------\n");
+  printf("     0|  %3d   %3d\n",dtptr->costs[0][0], dtptr->costs[0][2]);
+  printf("dest 2|  %3d   %3d\n",dtptr->costs[2][0], dtptr->costs[2][2]);
+  printf("     3|  %3d   %3d\n",dtptr->costs[3][0], dtptr->costs[3][2]);
+
+}
+
+
+
+linkhandler1(linkid, newcost)   
+int linkid, newcost;   
+/* called when cost from 1 to linkid changes from current value to newcost*/
+/* You can leave this routine empty if you're an undergrad. If you want */
+/* to use this routine, you'll need to change the value of the LINKCHANGE */
+/* constant definition in prog3.c from 0 to 1 */
+	
+{
+}
+

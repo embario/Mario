@@ -1,0 +1,85 @@
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+/** Mario Barrenechea <p>
+ * 	10/13/2010 <p>
+ * 	CMPSCI453: SA #1 <p>
+ * 
+ * 	ClientProgra.java:
+ * 
+ * 	This code is based on the Client code presented
+ * 	in class by Prof. Jim Kurose. It has been modified 
+ * 	to complete the socket programming assignment.
+ * 
+ * @author mbarrene
+ *
+ */
+public class ClientProgram {
+	
+    private static final int PORT_NUMBER = 6565;
+    private static Socket myClient = null;
+    private static BufferedReader inFromSystem = null;
+    private static BufferedReader inFromRelay = null;
+    private static DataOutputStream outToRelay = null;
+    
+    
+    enum MessageType{
+    	
+    	DATA,
+    	CLOSE
+    };
+    
+    public static void main (String args []){
+		
+	try {
+	    
+	    //Set up the Client Socket. "Localhost" means the underlyin machine.
+	    myClient = new Socket ("localhost", PORT_NUMBER);
+	    
+	    
+	    //Set up I/O Streams
+	    inFromSystem = new BufferedReader(new InputStreamReader(System.in));
+	    inFromRelay = new BufferedReader(new InputStreamReader(myClient.getInputStream()));
+	    outToRelay = new DataOutputStream(myClient.getOutputStream());
+	    
+	    boolean done = false;
+	    while (done == false){
+		
+		System.out.println("Send a Message to the Server. Type 'Quit' or 'Exit' to terminate the program.");
+		System.out.print(">: ");
+		String message = inFromSystem.readLine();
+
+		if (message.equalsIgnoreCase("quit") || message.equalsIgnoreCase("exit"))
+		    break;
+		
+		System.out.print ("Sending Message to Server at Port" + PORT_NUMBER + "..."); 
+		//Send the Message to the Server
+		outToRelay.writeBytes(message);
+		System.out.println("OK");
+				
+		//Expect the modified Message back from the Server!
+		String modifiedMessage = inFromRelay.readLine();
+		System.out.println("Modified Message: " + modifiedMessage + '\n');
+		
+	    }
+	    
+			
+	    System.out.print ("Closing all streams and sockets...");
+	    //Important to Close all streams and sockets.
+	    inFromSystem.close();
+	    inFromRelay.close();
+	    outToRelay.close();
+	    myClient.close();
+	    System.out.println("OK");
+	    
+	}
+	
+	catch (UnknownHostException u){ System.err.println(u);}
+	catch (IOException e) {System.err.println(e);}
+	
+    }//end main
+}
