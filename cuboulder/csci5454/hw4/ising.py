@@ -54,7 +54,8 @@ class Ising:
 
 	#Update the temperature with alpha as a free parameter
 	def update_temp(self, temp):
-		temp = self.get_alpha() * temp
+		self.__temp = self.get_alpha() * temp
+		return self.__temp
 	
 	#SA algorithm for finding global optimum (minimum)
 	def simulate_annealing(self):
