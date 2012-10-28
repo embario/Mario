@@ -1,0 +1,10 @@
+package fib;
+
+message Fib {
+  required int32 n = 1;
+  optional string response = 2;
+}
+
+message FibList {
+  repeated Fib fibs = 1;
+}
