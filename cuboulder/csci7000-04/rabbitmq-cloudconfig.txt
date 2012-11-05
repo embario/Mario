@@ -1,0 +1,56 @@
+#cloud-config
+#RABBITMQ INSTANCE: cloud-init configuration file:
+#You need to craft a cloud-config.txt file that does the following:
+
+#1. Installs rabbitmq-server
+#2. Installs zookeeper
+#3. Installs protobuf-compiler
+#4. Installs python-pip
+#8. Installs an SSH keypair (any) into your virtual machine root account
+
+#You also need to create a “user data” script that creates a directory “/tmp/data-scale”.
+#You then need to create a “multi-part MIME” file that combines both the cloud-config.txt file and your user-data.sh file.
+#Your example should be functional – you should try it out by running an OpenStack instance using the previously mentioned AMI image. 
+#You’ll probably need to do this a few times because the debugging info provided by cloud-init isn’t that good. 
+#You should focus on launch “small” instances because they launch quicker – your example would function the same on other instances too.
+
+# Update apt database on first boot
+# (ie run apt-get update)
+#
+# Default: true
+#
+apt_update: false
+
+# Upgrade the instance on first boot
+# (ie run apt-get upgrade)
+#
+# Default: false
+#
+apt_upgrade: false
+
+# Install additional packages on first boot
+#
+# Default: none
+#
+# if packages are specified, this apt_update will be set to true
+#
+packages:
+ - rabbitmq-server
+ - zookeeper
+ - protobuf-compiler
+ - python-pip
+
+ssh_import_id: [id_rsa]
+
+# run commands
+# default: none
+# runcmd contains a list of either lists or a string
+# each item will be executed in order at rc.local like level with
+# output to the console
+# - if the item is a list, the items will be properly executed as if
+#   passed to execve(3) (with the first arg as the command).
+# - if the item is a string, it will be simply written to the file and
+#   will be interpreted by 'sh'
+#
+# Note, that the list has to be proper yaml, so you have to escape
+# any characters yaml would eat (':' can be problematic)
